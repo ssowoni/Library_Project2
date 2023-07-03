@@ -157,7 +157,17 @@
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_USER')">
                     ${user.nickname}님
-                    <button type="button" class="btn btn-warning" onclick="location.href='/modify'">MyPage</button>
+                    <button type="button" class="btn btn-warning" onclick="location.href='/member/book'">자료검색</button>
+                    <button type="button" class="btn btn-warning" onclick="location.href='/member/board'">신청/참여</button>
+                    <button type="button" class="btn btn-warning" onclick="location.href='/member/modify'">MyPage</button>
+                    <form action="/logout" method="post">
+                        <button type="submit" class="btn btn-outline-light me-2" >Logout</button>
+                    </form>
+                </sec:authorize>
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    ${user.nickname}님
+                    <button type="button" class="btn btn-warning" onclick="location.href='/admin/book'">자료검색</button>
+                    <button type="button" class="btn btn-warning" onclick="location.href='/admin/board'">공지사항</button>
                     <form action="/logout" method="post">
                         <button type="submit" class="btn btn-outline-light me-2" >Logout</button>
                     </form>
