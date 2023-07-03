@@ -139,11 +139,34 @@
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle px-2 text-white" href="#" data-bs-toggle="dropdown" aria-expanded="false">자료검색</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/member/board">통합자료검색</a></li>
+                            <li><a class="dropdown-item" href="#">추천도서검색</a></li>
+                            <li><a class="dropdown-item" href="#">희망자료신청</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
                     <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
                     <li><a href="#" class="nav-link px-2 text-white">About</a></li>
                 </ul>
+
+
+
+               <%-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle show" href="#" data-bs-toggle="dropdown" aria-expanded="true">자료검색</a>
+                    <ul class="dropdown-menu show" data-bs-popper="static">
+                        <li><a class="dropdown-item" href="/member/board">통합자료검색</a></li>
+                        <li><a class="dropdown-item" href="#">추천도서검색</a></li>
+                        <li><a class="dropdown-item" href="#">희망자료신청</a></li>
+                    </ul>
+                </li>--%>
+
+
+
+
+
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
                     <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
@@ -168,6 +191,10 @@
                     ${user.nickname}님
                     <button type="button" class="btn btn-warning" onclick="location.href='/admin/book'">자료검색</button>
                     <button type="button" class="btn btn-warning" onclick="location.href='/admin/board'">공지사항</button>
+
+
+
+
                     <form action="/logout" method="post">
                         <button type="submit" class="btn btn-outline-light me-2" >Logout</button>
                     </form>
