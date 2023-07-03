@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wish.library.security.mapper.UserMapper">
+
+    <select id="getOne" resultType="UserDTO">
+        select email,
+               password,
+               role,
+               nickname
+        from members
+        where email = #{email}
+    </select>
+
+    <insert id="insert">
+        insert into members(email, password, name, nickname, mfCode, cellNo)
+        values (#{email}, #{password}, #{name}, #{nickname}, #{mfCode}, #{cellNo})
+    </insert>
+
+</mapper>
