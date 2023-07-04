@@ -80,7 +80,7 @@
 
         <div class="checkbox mb-3">
             <label>
-                <input type="checkbox" value="remember-me"> Remember me
+                <input type="checkbox" name="remember-me"> Remember me
             </label>
         </div>
         <button class="w-50 btn btn-lg btn-primary" type="submit">Sign in</button>

@@ -1,14 +1,25 @@
 package com.wish.library.security.config;
 
+import com.wish.library.security.service.CustomUserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.sql.DataSource;
 
 @Configuration
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final DataSource dataSource;
+    private final CustomUserService customUserService;
 
     @Bean
     PasswordEncoder passwordEncoder(){
@@ -41,9 +52,27 @@ public class SecurityConfig {
         //logout 설정
         http.logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/"); //logout에 성공하면 /로 redirect
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true)
+                .deleteCookies("remember-me","JSESSIONID"); //logout에 성공하면 /로 redirect
+
+        //자동 로그인 설정
+        http.rememberMe()
+                .key("wish") //쿠키에 사용되는 값을 암호화하기 위한 키(key)값
+                .tokenRepository(persistentTokenRepository())
+                .rememberMeParameter("remember-me")
+                .tokenValiditySeconds(604800); //토큰 유지 시간(초단위)- 일주일
+
 
         return http.build();
     }
+
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository(){
+        JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
+        repo.setDataSource(dataSource);
+        return repo;
+    }
+
 
 }

@@ -27,8 +27,6 @@ public class CustomAuthProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String reqEmail = (String) authentication.getPrincipal().toString(); // 로그인 창에 입력한 email
         String reqPassword = (String) authentication.getCredentials().toString(); //로그인 창에 입력한 password
-        log.info("입력받은 email, password={},{}", reqEmail,reqPassword);
-        log.info("인코딩된 비밀번호 ={} ",reqPassword );
         UserDTO userDTO = (UserDTO)userService.loadUserByUsername(reqEmail);
         log.info("로그인시 조회해온 정보={}",userDTO.toString());
 

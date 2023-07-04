@@ -100,14 +100,6 @@
             <input type="text" class="form-control" name="cellNo" id="cellNo" placeholder="cellNo">
             <label for="cellNo">cellNo</label>
         </div>
-
-
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
         <button class="w-50 btn btn-lg btn-dark" type="button" onclick="history.back();" >이전페이지로가기</button>
         <%--<button class="w-50 btn btn-lg btn-primary" type="button" name="btn" id="btnSingUp" >Sign up</button>--%>
         <button type="submit" class="w-50 btn btn-lg btn-primary">Sign up</button>
