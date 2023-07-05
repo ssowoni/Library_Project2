@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -53,15 +55,16 @@ public class UserController {
     }
 
     @PostMapping("/join")
-    public String join(@ModelAttribute MemberSaveForm memberSaveForm, RedirectAttributes rttr) {
+    public String join(@Validated @ModelAttribute("memberSaveForm") MemberSaveForm memberSaveForm
+                        , BindingResult bindingResult
+                        , RedirectAttributes rttr) {
         log.info("=================join Controller");
-        /*try{
-            memberService.save(memberSaveForm);
-            rttr.addFlashAttribute("result", "회원 가입 완료");
-        }catch (IllegalStateException e){
-            rttr.addFlashAttribute("result", e.getMessage());
+
+        if(bindingResult.hasErrors()){
+            log.info("errors={}", bindingResult);
             return "join";
-        }*/
+        }
+
         boolean saveResult = memberService.save(memberSaveForm);
         if(saveResult){
             rttr.addFlashAttribute("result", "회원 가입 완료");
@@ -70,7 +73,6 @@ public class UserController {
             return "join";
 
 
-        /*return new ResponseEntity<>("회원 가입 완료", HttpStatus.OK);*/
     }
 
 }

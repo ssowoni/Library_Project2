@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
 <!doctype html>
@@ -56,7 +56,7 @@
 </script>
 <body class="text-center">
 <main class="form-signin w-100 m-auto">
-    <form  name="join_form" action="/join" method="post">
+    <form:form  name="join_form" action="/join" method="post" modelAttribute="memberSaveForm">
         <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
 
         <img class="mb-4" src="assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"
@@ -65,26 +65,31 @@
         <div class="form-floating">
             <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
             <label for="email">Email address</label><%--<button class="btn btn-light rounded-pill px-3" type="button" name="btn" id="btnEmailCheck">Duplicate check</button>--%>
-            <span id="id-check"></span>
+            <%--<span id="id-check"></span>--%>
+            <span class="text-danger"><form:errors path="email" /></span>
         </div>
         <div class="form-floating">
             <input type="password" class="form-control" name="password" id="password" placeholder="Password" autoComplete="off">
             <label for="password">Password</label>
+            <span class="text-danger"><form:errors path="password" /></span>
+
         </div>
-        <div class="form-floating">
+<%--        <div class="form-floating">
             <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" placeholder="passwordConfirm" autoComplete="off">
             <label for="passwordConfirm">passwordConfirm</label>
-        </div>
+            <form:errors path="passwordConfirm" /><br>
+        </div>--%>
         <div class="form-floating">
             <input type="text" class="form-control" name="name" id="name" placeholder="name">
             <label for="name">name</label>
+            <span class="text-danger"><form:errors path="name" /></span>
         </div>
         <div class="form-floating">
             <input type="text" class="form-control" name="nickname" id="nickname" placeholder="nickname">
             <label for="nickname">nickname</label>
             <%--<button class="btn btn-light rounded-pill px-3" type="button" name="btn" id="btnNicknameCheck">Duplicate check</button>--%>
-            <span id="nickname-check"></span>
-
+            <%--<span id="nickname-check"></span>--%>
+            <span class="text-danger"><form:errors path="nickname" /></span>
         </div>
         <div class="form-floating">
             <div class="form-check">
@@ -99,11 +104,12 @@
         <div class="form-floating">
             <input type="text" class="form-control" name="cellNo" id="cellNo" placeholder="cellNo">
             <label for="cellNo">cellNo</label>
+            <span class="text-danger"><form:errors path="cellNo" /></span>
         </div>
         <button class="w-50 btn btn-lg btn-dark" type="button" onclick="history.back();" >이전페이지로가기</button>
         <%--<button class="w-50 btn btn-lg btn-primary" type="button" name="btn" id="btnSingUp" >Sign up</button>--%>
         <button type="submit" class="w-50 btn btn-lg btn-primary">Sign up</button>
-    </form>
+    </form:form>
 </main>
 
 

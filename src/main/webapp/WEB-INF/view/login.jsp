@@ -43,20 +43,20 @@
     <script>
         $(document).ready(function (){
             const result = '<c:out value="${result}" />';
-            checkAlert(result);
+            checkModal(result);
 
             //회원
-            function checkAlert(result){
+            function checkModal(result){
                 console.log(result);
-                if(result === ''){
+                if(result === '' || history.state){
                     //해당 메서드를 아예 끝내버려라.
                     return;
                 }
 
-                alert(result);
-
+                $(".modal-body").html(result);
+                $("#myModal").modal('show');
             }
-        })
+        });
     </script>
 </head>
 <body class="text-center">
@@ -92,6 +92,32 @@
         <button class="w-50 btn btn-lg btn-primary" type="submit">Sign in</button>
         <button class="w-50 btn btn-lg btn-light" onclick="location.href='/join'">Sign up</button>
     </form>
+
+
+    <!-- Modal  추가 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">처리가 완료되었습니다.</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Save
+                        changes</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
 </main>
 
 
