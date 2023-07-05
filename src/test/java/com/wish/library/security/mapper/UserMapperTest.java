@@ -47,10 +47,10 @@ class UserMapperTest {
     public void 회원가입_테스트(){
 
         MemberSaveForm member = MemberSaveForm.builder()
-                .email("security@gmail.com")
-                .password(passwordEncoder.encode("admin"))
-                .name("관리자")
-                .nickname("관리자")
+                .email("test@gmail.com")
+                .password(passwordEncoder.encode("test"))
+                .name("test회원")
+                .nickname("test회원")
                 .mfCode(Sex.FEMALE)
                 .cellNo("01077778888")
                 .build();

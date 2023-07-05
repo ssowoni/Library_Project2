@@ -12,6 +12,7 @@ import java.util.Date;
 @Builder
 public class MemberSaveForm {
 
+
     private String email; // 회원 아이디
     private String password; //비밀번호
     private String name;

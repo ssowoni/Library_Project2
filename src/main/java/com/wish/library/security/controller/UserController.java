@@ -11,11 +11,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * GET 방식, 화면 조회시
@@ -32,7 +30,7 @@ public class UserController {
     public String home(Model model){
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(!(email.equals("anonymousUser"))) {
-            log.info("index page, security 조회 email : " + email);
+            log.info("index page, security 조회 email, getPrincipal : " + email);
             UserDTO user = (UserDTO) customUserService.loadUserByUsername(email);
             user.setPassword(null);
             model.addAttribute("user", user);
@@ -41,7 +39,11 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login(){
+    public String login(Model model,
+            @RequestParam(value="error", required = false) String error,
+            @RequestParam(value = "exception", required = false) String exception){
+        model.addAttribute("error", error);
+        model.addAttribute("exception", exception);
         return "login";
     }
 
@@ -51,15 +53,23 @@ public class UserController {
     }
 
     @PostMapping("/join")
-    public String join(@ModelAttribute MemberSaveForm memberSaveForm, Model model) {
+    public String join(@ModelAttribute MemberSaveForm memberSaveForm, RedirectAttributes rttr) {
         log.info("=================join Controller");
-        try{
+        /*try{
             memberService.save(memberSaveForm);
+            rttr.addFlashAttribute("result", "회원 가입 완료");
         }catch (IllegalStateException e){
-            model.addAttribute("errorMessage", e.getMessage());
+            rttr.addFlashAttribute("result", e.getMessage());
             return "join";
+        }*/
+        boolean saveResult = memberService.save(memberSaveForm);
+        if(saveResult){
+            rttr.addFlashAttribute("result", "회원 가입 완료");
+            return "redirect:/login";
         }
-        return "redirect:/login";
+            return "join";
+
+
         /*return new ResponseEntity<>("회원 가입 완료", HttpStatus.OK);*/
     }
 

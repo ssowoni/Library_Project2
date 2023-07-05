@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
@@ -20,6 +21,7 @@ public class SecurityConfig {
 
     private final DataSource dataSource;
     private final CustomUserService customUserService;
+    private final AuthenticationFailureHandler customFailureHandler;
 
     @Bean
     PasswordEncoder passwordEncoder(){
@@ -45,6 +47,7 @@ public class SecurityConfig {
         http.formLogin()
                 .loginPage("/login") // GET 요청 (login form을 보여줌)
                 .loginProcessingUrl("/login") //POST 요청 (login 창에 입력한 데이터를 처리)
+                .failureHandler(customFailureHandler)
                 .usernameParameter("email") //login에 필요한 id 값을 email로 설정 (default는 username)
                 .passwordParameter("password") //login에 필요한 password 값을 password
                 .defaultSuccessUrl("/"); //login에 성공하면 /로 redirect

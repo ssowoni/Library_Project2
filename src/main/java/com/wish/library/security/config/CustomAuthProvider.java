@@ -32,8 +32,8 @@ public class CustomAuthProvider implements AuthenticationProvider {
 
         //matches : 암호화되지 않은 비밀번호와 암호화된 비밀번호가 일치하는지 비교
         if(!passwordEncoder.matches(reqPassword, userDTO.getPassword())){
-            log.info("비밀번호가 일치하지 않습니다.");
-            throw new BadCredentialsException("비밀번호가 일치하지 않습니다.");
+            log.info("아이디나 비밀번호가 일치하지 않습니다.");
+            throw new BadCredentialsException("아이디나 비밀번호가 일치하지 않습니다.");
         }
 
         log.info("비밀번호 일치합니다. 로그인 완료 ");

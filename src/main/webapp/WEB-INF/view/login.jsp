@@ -78,6 +78,12 @@
             <label for="password">Password</label>
         </div>
 
+        <span>
+            <c:if test="${error}">
+                <p id="valid" class="alert alert-danger">${exception}</p>
+            </c:if>
+        </span>
+
         <div class="checkbox mb-3">
             <label>
                 <input type="checkbox" name="remember-me"> Remember me
