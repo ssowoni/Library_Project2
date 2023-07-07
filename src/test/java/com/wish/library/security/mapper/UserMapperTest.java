@@ -63,4 +63,20 @@ class UserMapperTest {
         Assertions.assertThat(saveResult).isEqualTo(true);*/
     }
 
+    @Test
+    public void 회원가입_이메일_중복테스트(){
+        MemberSaveForm member = MemberSaveForm.builder()
+                .email("test@gmail.com")
+                .password(passwordEncoder.encode("test"))
+                .name("test회원")
+                .nickname("test회원")
+                .mfCode(Sex.FEMALE)
+                .cellNo("01077778888")
+                .build();
+
+
+
+    }
+
+
 }

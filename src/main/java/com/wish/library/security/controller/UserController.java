@@ -1,5 +1,7 @@
 package com.wish.library.security.controller;
 
+import com.wish.library.security.controller.validation.CheckEmailValidator;
+import com.wish.library.security.controller.validation.CheckNicknameValidator;
 import com.wish.library.security.domain.MemberSaveForm;
 import com.wish.library.security.domain.UserDTO;
 import com.wish.library.security.service.CustomUserService;
@@ -12,10 +14,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.Map;
 
 /**
  * GET 방식, 화면 조회시
@@ -27,6 +33,18 @@ public class UserController {
 
     private final CustomUserService customUserService;
     private final MemberService memberService;
+    private final CheckEmailValidator checkEmailValidator;
+    private final CheckNicknameValidator checkNicknameValidator;
+
+
+    /*커스텀 유효성 검증을 위해 추가*/
+    @InitBinder
+    public void validatorBinder(WebDataBinder binder){
+        binder.addValidators(checkEmailValidator);
+        binder.addValidators(checkNicknameValidator);
+    }
+
+
 
     @GetMapping("/")
     public String home(Model model){
@@ -64,6 +82,15 @@ public class UserController {
         if(bindingResult.hasErrors()){
             model.addAttribute("memberDto", memberSaveForm);
             log.info("errors={}", bindingResult);
+
+            /*중복 검사 통과 못한 메시지를 핸들링*/
+            Map<String, String> validatorResult = memberService.validateHandling(bindingResult);
+            //keySet() : Map의 key값을 가져올때 사용.
+            for(String key:validatorResult.keySet()){
+                model.addAttribute(key, validatorResult.get(key));
+            }
+
+
             return "join";
         }
 
@@ -73,8 +100,7 @@ public class UserController {
             return "redirect:/login";
         }
             return "join";
-
-
     }
+
 
 }

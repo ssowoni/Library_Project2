@@ -84,7 +84,7 @@
             <input type="text" class="form-control" name="name" id="name" value="${memberDto.name}"
                    placeholder="name">
             <label for="name">name</label>
-            <span class="text-danger"><form:errors path="name" /></span>
+            <span class="text-danger">${valid_name} <form:errors path="name" /></span>
         </div>
         <div class="form-floating">
             <input type="text" class="form-control" name="nickname" id="nickname"  value="${memberDto.nickname}"
@@ -92,7 +92,7 @@
             <label for="nickname">nickname</label>
             <%--<button class="btn btn-light rounded-pill px-3" type="button" name="btn" id="btnNicknameCheck">Duplicate check</button>--%>
             <%--<span id="nickname-check"></span>--%>
-            <span class="text-danger"><form:errors path="nickname" /></span>
+            <span class="text-danger">${valid_nickname} <form:errors path="nickname" /></span>
         </div>
         <div class="form-floating">
             <div class="form-check">

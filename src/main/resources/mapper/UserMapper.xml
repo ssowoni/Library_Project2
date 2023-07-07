@@ -18,4 +18,16 @@
         values (#{email}, #{password}, #{name}, #{nickname}, #{mfCode}, #{cellNo})
     </insert>
 
+    <select id="getOneByEmail" resultType="boolean">
+        select count(*)
+        from members
+        where email = #{email}
+    </select>
+
+    <select id="getOneByNickname" resultType="boolean">
+        select count(*)
+        from members
+        where nickname = #{nickname}
+    </select>
+
 </mapper>

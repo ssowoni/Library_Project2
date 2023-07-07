@@ -7,6 +7,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -30,4 +35,33 @@ public class MemberServiceImpl implements MemberService{
         }
         return false;
     }
+
+    /*회원 가입 시, 유효성 및 중복 검사*/
+    @Override
+    public boolean checkEmailDuplication(String email) {
+        return mapper.getOneByEmail(email);
+    }
+
+    @Override
+    public boolean checkNicknameDuplication(String nickname) {
+        return mapper.getOneByNickname(nickname);
+    }
+
+    @Transactional(readOnly = true)
+    public Map<String,String> validateHandling(Errors errors){
+        Map<String, String> validatorResult = new HashMap<>();
+
+        /*유효성 및 중복 검사에 실패한 필드 목록을 받음*/
+        for(FieldError error : errors.getFieldErrors()){
+            //String.format은 문자열 형식을 설정할때 사용한다.
+            String validKeyName = String.format("valid_%s", error.getField());
+            validatorResult.put(validKeyName, error.getDefaultMessage());
+        }
+        return validatorResult;
+    }
+
+
+
+
+
 }
