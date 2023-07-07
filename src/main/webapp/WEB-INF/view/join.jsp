@@ -63,7 +63,8 @@
              onclick="location.href='/'">
         <h1 class="h3 mb-3 fw-normal">Please join in</h1>
         <div class="form-floating">
-            <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
+            <input type="email" class="form-control" name="email" id="email" value="${memberDto.email}"
+                   placeholder="name@example.com">
             <label for="email">Email address</label><%--<button class="btn btn-light rounded-pill px-3" type="button" name="btn" id="btnEmailCheck">Duplicate check</button>--%>
             <%--<span id="id-check"></span>--%>
             <span class="text-danger"><form:errors path="email" /></span>
@@ -80,12 +81,14 @@
             <form:errors path="passwordConfirm" /><br>
         </div>--%>
         <div class="form-floating">
-            <input type="text" class="form-control" name="name" id="name" placeholder="name">
+            <input type="text" class="form-control" name="name" id="name" value="${memberDto.name}"
+                   placeholder="name">
             <label for="name">name</label>
             <span class="text-danger"><form:errors path="name" /></span>
         </div>
         <div class="form-floating">
-            <input type="text" class="form-control" name="nickname" id="nickname" placeholder="nickname">
+            <input type="text" class="form-control" name="nickname" id="nickname"  value="${memberDto.nickname}"
+                   placeholder="nickname">
             <label for="nickname">nickname</label>
             <%--<button class="btn btn-light rounded-pill px-3" type="button" name="btn" id="btnNicknameCheck">Duplicate check</button>--%>
             <%--<span id="nickname-check"></span>--%>
@@ -102,7 +105,8 @@
             </div>
         </div>
         <div class="form-floating">
-            <input type="text" class="form-control" name="cellNo" id="cellNo" placeholder="cellNo">
+            <input type="text" class="form-control" name="cellNo" id="cellNo" value="${memberDto.cellNo}"
+                   placeholder="cellNo">
             <label for="cellNo">cellNo</label>
             <span class="text-danger"><form:errors path="cellNo" /></span>
         </div>

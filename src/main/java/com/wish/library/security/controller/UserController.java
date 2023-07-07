@@ -57,10 +57,12 @@ public class UserController {
     @PostMapping("/join")
     public String join(@Validated @ModelAttribute("memberSaveForm") MemberSaveForm memberSaveForm
                         , BindingResult bindingResult
-                        , RedirectAttributes rttr) {
+                        , RedirectAttributes rttr
+                        ,Model model) {
         log.info("=================join Controller");
 
         if(bindingResult.hasErrors()){
+            model.addAttribute("memberDto", memberSaveForm);
             log.info("errors={}", bindingResult);
             return "join";
         }
