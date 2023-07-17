@@ -47,18 +47,18 @@ public class MemberServiceImpl implements MemberService{
         return mapper.getOneByNickname(nickname);
     }
 
-    @Transactional(readOnly = true)
+   /* @Transactional(readOnly = true)
     public Map<String,String> validateHandling(Errors errors){
         Map<String, String> validatorResult = new HashMap<>();
 
-        /*유효성 및 중복 검사에 실패한 필드 목록을 받음*/
+        *//*유효성 및 중복 검사에 실패한 필드 목록을 받음*//*
         for(FieldError error : errors.getFieldErrors()){
             //String.format은 문자열 형식을 설정할때 사용한다.
             String validKeyName = String.format("valid_%s", error.getField());
             validatorResult.put(validKeyName, error.getDefaultMessage());
         }
         return validatorResult;
-    }
+    }*/
 
 
 

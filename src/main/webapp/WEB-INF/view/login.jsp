@@ -13,9 +13,10 @@
     <meta name="generator" content="Hugo 0.111.3">
     <title>로그인</title>
 
+    <jsp:include page="./includes/common_includes.jsp"></jsp:include>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
     <link href="assets/dist/css/sign-in.css" rel="stylesheet">
-    <jsp:include page="./includes/common_includes.jsp"></jsp:include>
+
 
 
 
@@ -43,7 +44,8 @@
     <script>
         $(document).ready(function (){
             const result = '<c:out value="${result}" />';
-            checkModal(result);
+            alert(result);
+           /* checkModal(result);
 
             //회원
             function checkModal(result){
@@ -55,7 +57,7 @@
 
                 $(".modal-body").html(result);
                 $("#myModal").modal('show');
-            }
+            }*/
         });
     </script>
 </head>
@@ -64,7 +66,7 @@
 
 <main class="form-signin w-100 m-auto">
     <form action="/login" method="post">
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
         <img class="mb-4" src="assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"
              onclick="location.href='/'">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
@@ -90,11 +92,11 @@
             </label>
         </div>
         <button class="w-50 btn btn-lg btn-primary" type="submit">Sign in</button>
-        <button class="w-50 btn btn-lg btn-light" onclick="location.href='/join'">Sign up</button>
+        <button class="w-50 btn btn-lg btn-light" type="button" onclick="location.href='/join'">Sign up</button>
     </form>
 
 
-    <!-- Modal  추가 -->
+<%--    <!-- Modal  추가 -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
          aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -116,7 +118,28 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal -->
+    <!-- /.modal -->--%>
+
+
+
+<%--    <div class="modal-content rounded-3 shadow" id="myModal" aria-hidden="true">
+        <div class="modal-body p-4 text-center">
+            <p class="modal-body">처리가 완료되었습니다. </p>
+        </div>
+        <div class="modal-footer flex-nowrap p-0">
+            <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0 border-end"><strong>Yes, enable</strong></button>
+            <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0" data-bs-dismiss="modal">No thanks</button>
+        </div>
+    </div>--%>
+
+
+
+
+
+
+
+
+
 
 </main>
 

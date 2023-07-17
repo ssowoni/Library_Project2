@@ -2,6 +2,7 @@ package com.wish.library.security.controller;
 
 import com.wish.library.security.controller.validation.CheckEmailValidator;
 import com.wish.library.security.controller.validation.CheckNicknameValidator;
+import com.wish.library.security.controller.validation.CheckPasswordValidator;
 import com.wish.library.security.domain.MemberSaveForm;
 import com.wish.library.security.domain.UserDTO;
 import com.wish.library.security.service.CustomUserService;
@@ -35,6 +36,7 @@ public class UserController {
     private final MemberService memberService;
     private final CheckEmailValidator checkEmailValidator;
     private final CheckNicknameValidator checkNicknameValidator;
+    private final CheckPasswordValidator checkPasswordValidator;
 
 
     /*커스텀 유효성 검증을 위해 추가*/
@@ -42,6 +44,7 @@ public class UserController {
     public void validatorBinder(WebDataBinder binder){
         binder.addValidators(checkEmailValidator);
         binder.addValidators(checkNicknameValidator);
+        binder.addValidators(checkPasswordValidator);
     }
 
 
@@ -84,15 +87,22 @@ public class UserController {
             log.info("errors={}", bindingResult);
 
             /*중복 검사 통과 못한 메시지를 핸들링*/
-            Map<String, String> validatorResult = memberService.validateHandling(bindingResult);
+/*            Map<String, String> validatorResult = memberService.validateHandling(bindingResult);
             //keySet() : Map의 key값을 가져올때 사용.
             for(String key:validatorResult.keySet()){
                 model.addAttribute(key, validatorResult.get(key));
-            }
-
+            }*/
 
             return "join";
         }
+
+        /*if(!(memberSaveForm.getPassword().equals(memberSaveForm.getPasswordConfirm()))){
+            model.addAttribute("memberDto", memberSaveForm);
+            bindingResult.rejectValue("passwordConfirm","passwordInCorrect","2개의 비밀번호가 일치하지 않습니다.");
+            log.info("errors={}", bindingResult);
+            return "join";
+        }*/
+
 
         boolean saveResult = memberService.save(memberSaveForm);
         if(saveResult){

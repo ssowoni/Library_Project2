@@ -67,7 +67,7 @@
                    placeholder="name@example.com">
             <label for="email">Email address</label><%--<button class="btn btn-light rounded-pill px-3" type="button" name="btn" id="btnEmailCheck">Duplicate check</button>--%>
             <%--<span id="id-check"></span>--%>
-            <span class="text-danger"><form:errors path="email" /></span>
+            <span class="text-danger"><%--${valid_email}--%><form:errors path="email" /></span>
         </div>
         <div class="form-floating">
             <input type="password" class="form-control" name="password" id="password" placeholder="Password" autoComplete="off">
@@ -75,16 +75,16 @@
             <span class="text-danger"><form:errors path="password" /></span>
 
         </div>
-<%--        <div class="form-floating">
+        <div class="form-floating">
             <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" placeholder="passwordConfirm" autoComplete="off">
             <label for="passwordConfirm">passwordConfirm</label>
-            <form:errors path="passwordConfirm" /><br>
-        </div>--%>
+            <span class="text-danger"><form:errors path="passwordConfirm" /></span>
+        </div>
         <div class="form-floating">
             <input type="text" class="form-control" name="name" id="name" value="${memberDto.name}"
                    placeholder="name">
             <label for="name">name</label>
-            <span class="text-danger">${valid_name} <form:errors path="name" /></span>
+            <span class="text-danger"><form:errors path="name" /></span>
         </div>
         <div class="form-floating">
             <input type="text" class="form-control" name="nickname" id="nickname"  value="${memberDto.nickname}"
@@ -92,7 +92,7 @@
             <label for="nickname">nickname</label>
             <%--<button class="btn btn-light rounded-pill px-3" type="button" name="btn" id="btnNicknameCheck">Duplicate check</button>--%>
             <%--<span id="nickname-check"></span>--%>
-            <span class="text-danger">${valid_nickname} <form:errors path="nickname" /></span>
+            <span class="text-danger"><%--${valid_nickname}--%> <form:errors path="nickname" /></span>
         </div>
         <div class="form-floating">
             <div class="form-check">

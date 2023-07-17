@@ -13,6 +13,6 @@ public interface MemberService {
 
     boolean checkNicknameDuplication(String nickname);
 
-    Map<String, String> validateHandling(Errors errors);
+    //Map<String, String> validateHandling(Errors errors);
 
 }
