@@ -47,7 +47,7 @@ class UserMapperTest {
     public void 회원가입_테스트(){
 
         MemberSaveForm member = MemberSaveForm.builder()
-                .email("test@gmail.com")
+                .email("test1@gmail.com")
                 .password(passwordEncoder.encode("test"))
                 .name("test회원")
                 .nickname("test회원")

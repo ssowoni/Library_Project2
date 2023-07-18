@@ -44,7 +44,18 @@
     <script>
         $(document).ready(function (){
             const result = '<c:out value="${result}" />';
-            alert(result);
+            checkAlert(result);
+
+            function checkAlert(result){
+                if(result === '' || history.state){
+                    return;
+                }
+
+                alert(result);
+            }
+
+
+
            /* checkModal(result);
 
             //회원

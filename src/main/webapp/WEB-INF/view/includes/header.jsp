@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
@@ -16,12 +16,10 @@
     <title>Headers · Bootstrap v5.3</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/headers/">
-    <link href="assets/dist/css/headers.css" rel="stylesheet">
+    <link href="/assets/dist/css/headers.css" rel="stylesheet">
+    <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
-    <jsp:include page="includes/common_includes.jsp"></jsp:include>
-
-
-    <%--<link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">--%>
 
     <style>
         .bd-placeholder-img {
@@ -62,15 +60,15 @@
 
 </head>
 <script>
-    $(document).ready(function (){
-        function fSignOut(){
+ /*   $(document).ready(function (){
+     /!*   function fSignOut(){
             let form = document.createElement('form');
             form.setAttribute('method', 'post');
             form.setAttribute('action','/logout');
             document.body.appendChild(form);
             form.submit();
-        }
-    })
+        }*!/
+    })*/
 
 </script>
 <body>
@@ -141,7 +139,7 @@
                     <button type="button" class="btn btn-warning" onclick="location.href='/join'">Sign-up</button>
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_USER')">
-                    ${user.nickname}님
+                    <%--${user.nickname}님--%>
                     <button type="button" class="btn btn-warning" onclick="location.href='/member/book'">자료검색</button>
                     <button type="button" class="btn btn-warning" onclick="location.href='/member/board'">신청/참여</button>
                     <button type="button" class="btn btn-warning" onclick="location.href='/member/modify'">MyPage</button>
@@ -150,7 +148,7 @@
                     </form>
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    ${user.nickname}님
+                    <%--${user.nickname}님--%>
                     <button type="button" class="btn btn-warning" onclick="location.href='/admin/book'">자료검색</button>
                     <button type="button" class="btn btn-warning" onclick="location.href='/admin/board'">공지사항</button>
 
