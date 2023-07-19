@@ -19,7 +19,7 @@
 
 <!-- 게시글 리스트 -->
 
-<div class="container" style="margin-top:60px">
+<div class="container" style="margin-top:40px">
     <div class="card shadow">
         <div class="card-body">
             <table class="table table-hover" id='board_list'>
@@ -40,16 +40,17 @@
                         </tr>
                     </c:when>
                     <c:otherwise>
-                        <td class="text-center d-none d-md-table-cell"> ${list.proBno}</td>
-                        <td class="text-center d-none d-md-table-cell"> ${list.title}</td>
-                        <td class="text-center d-none d-md-table-cell"> ${list.writer}</td>
-                        <td class="text-center d-none d-md-table-cell"> ${list.regDate}</td>
+                        <c:forEach items="${list}" var="board">
+                        <tbody>
+                        <tr>
+                            <td class="text-center d-none d-md-table-cell"> ${board.proBno}</td>
+                            <td class="text-center d-none d-md-table-cell"> ${board.title}</td>
+                            <td class="text-center d-none d-md-table-cell"> ${board.writer}</td>
+                            <td class="text-center d-none d-md-table-cell"> ${board.regDate}</td>
+                        </tr>
+                        </c:forEach>
                     </c:otherwise>
                 </c:choose>
-                <tbody>
-                <tr>
-
-                </tr>
                 </tbody>
             </table>
 

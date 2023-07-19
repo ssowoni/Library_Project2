@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
  * 프로그램 게시판 - 관리자
  */
 
-@Controller
+@RestController
 @Slf4j
 @RequestMapping("/admin")
 @RequiredArgsConstructor
@@ -25,11 +26,20 @@ public class ProBoardAdminController {
     private final ProBoardService service;
 
     @GetMapping("/board")
+    public List<ProBoardVO>  getList(){
+        return service.readList();
+    }
+
+
+
+
+
+/*    @GetMapping("/board")
     public String board(Model model){
         log.info("=======  proBoard list all, controller");
         List<ProBoardVO> boardList = service.readList();
         model.addAttribute("list", boardList);
         return "board/program/list";
-    }
+    }*/
 
 }

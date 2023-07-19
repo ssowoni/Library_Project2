@@ -6,13 +6,13 @@
 <mapper namespace="com.wish.library.board.mapper.ProBoardMapper">
 
     <!-- 프로그램 게시글 전체 조회 -->
-    <select id="getList" resultType="com.wish.library.board.domain.ProBoardVO">
+    <select id="getList" resultType="ProBoardVO">
         select proBno, title, content, writer, replyCnt, regDate, updateDate
         from pro_board
     </select>
 
     <!--게시글 하나 조회 -->
-    <select id="getOne" resultType="com.wish.library.board.domain.ProBoardVO">
+    <select id="getOne" resultType="ProBoardVO">
         <![CDATA[
         select proBno, title, content, writer, replyCnt, regDate, updateDate
         from pro_board
